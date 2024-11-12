@@ -9,38 +9,34 @@ import Product from './components/Product'
 
 
 function App() {
-  let [count, setcount] = useState(0);
-
-  let handleClick=() => {
-    count+=5
-    setcount(count)
-  }
-   
-  let countRef = useRef(0)
-  let handleClick2=()=>{
-    console.log(countRef.current+=25)
-  
+  let dropRef = useRef (null)
+  let handleDrop =()=>{
+   if (dropRef.current.style.display == 'block'){
+    dropRef.current.style.display = 'none'
+   }
+   else{
+    dropRef.current.style.display = 'block'
+   }
     
   }
- 
   
-
   return (
     <>
-    <Container className={'bg-teal-800 mt-[250px] mb-[50px]'}>
-      
-    <h1 className='text-4xl'>Usestate</h1>
-       <h2 className='text-4xl'>{count}</h2>
-      <button onClick={handleClick} className='text-4xl bg-violet-700 p-1 rounded-lg'>Click</button>
-    </Container>
-
-
-
-    <Container className={'bg-orange-800 m-4 '}>
-      
-    <h1 className='text-4xl'>UseRef</h1>
-       <h2 className='text-4xl'>{countRef.current}</h2>
-      <button onClick = {handleClick2} className= 'text-4xl  bg-violet-700 p-1 rounded-lg'>Click</button>
+    <Container className={' mt-[250px] mb-[50px] rounded-lg'}>
+  <div onClick={handleDrop}>
+    <button className='py-3 px-7 text-4xl rounded-3xl bg-yellow-700 text-white'>Click</button>
+  <div className="bg-teal-500 rounded-lg mt-5 hidden" ref={dropRef}>
+   <ul className='text-4xl p-8 text-center font-bold'>
+  <li className='bg-purple-400'>Menu</li>
+  <li className='bg-teal-400'>Home</li>
+  <li className='bg-purple-400'>About</li>
+  <li className='bg-teal-400'>News</li>
+  <li className='bg-purple-400'>Webs</li>
+  <li className='bg-teal-400'>Maps</li>
+  <li className='bg-purple-400'>Contact</li>
+ </ul>
+   </div>
+  </div>
     </Container>
     
     </>
